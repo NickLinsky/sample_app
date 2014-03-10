@@ -5,34 +5,25 @@ describe "User pages" do
   subject { page }
 
   describe "profile page" do
-    let(:user) { FactoryGirl.create(:user) }
-    before { visit user_path(user) }
-
-    it { should have_content(user.name) }
-    it { should have_title(user.name) }
+    test_profile_page
   end
 
   describe "signup page" do
-    before { visit signup_path }
-
-    it { should have_content('Sign up') }
-    it { should have_title(full_title('Sign up')) }
+    test_signup_page
   end
 
   describe "signup" do
 
-    before { visit signup_path }
+    before { visit_signup_page }
 
     let(:submit) { "Create my account" }
 
     describe "with invalid information" do
       describe "after submission" do
-        before { click_button submit }
-        it { should have_title('Sign up') }
-        it { should have_content('error') }
+        submit_invalid_user_info
       end
       it "should not create a user" do
-        expect { click_button submit }.not_to change(User, :count)
+        confirm_no_change_user_count
       end
     end
 

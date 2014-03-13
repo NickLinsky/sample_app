@@ -1,6 +1,5 @@
 include ApplicationHelper
 
-<<<<<<< HEAD
 def goto_signin_page
     before { visit signin_path }
 end
@@ -81,18 +80,3 @@ end
 def confirm_no_change_user_count
   expect { click_button submit }.not_to change(User, :count)
 end
-=======
-def sign_in(user, options={})
-  if options[:no_capybara]
-    # Sign in when not using Capybara.
-    remember_token = User.new_remember_token
-    cookies[:remember_token] = remember_token
-    user.update_attribute(:remember_token, User.hash(remember_token))
-  else
-    visit signin_path
-    fill_in "Email",    with: user.email
-    fill_in "Password", with: user.password
-    click_button "Sign in"
-  end
-end
->>>>>>> updating-users2

@@ -1,4 +1,24 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
+  <script>
+
+
+    function textCounter()
+    {
+      textareaid = document.getElementById('micropost_content');
+      if (textareaid.value.length > 140)
+        textareaid.value = textareaid.value.substring(0, 140);
+      else
+        document.getElementById('micropost_content').value.length = '('+(140-textareaid.value.length)+' characters available)';
+
+      
+      document.getElementById("iwanttowritemore").innerHTML = 140 - textareaid.value.length;
+    } 
+  </script>
+
+    <style>
+      #ta1count { border: 0; }
+    </style>
+
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "sample app", root_path, id: "logo" %>
